@@ -1,5 +1,5 @@
 
-# <img src="media/logo.png" width="25" href=https://github.com/Fernandohf/Estimada-Morada>Estimada Morada
+# <img src="media/logo.png" width="20" href=https://github.com/Fernandohf/Estimada-Morada> Estimada Morada
 
 [![AUR](https://img.shields.io/aur/license/yaourt.svg)]()
 
