@@ -1,4 +1,4 @@
-<img src="Assets/icon.png" width="200" a=https://github.com/Fernandohf/Estimada-Morada>
+<img src="Assets/icon.png" width="200" href=https://github.com/Fernandohf/Estimada-Morada>
 
 # Estimada Morada
 
