@@ -1,4 +1,4 @@
-<img src="media/logo.png" width="200" href=https://github.com/Fernandohf/Estimada-Morada>
+<img src="media/logo.png" width="100" href=https://github.com/Fernandohf/Estimada-Morada>
 
 # Estimada Morada
 
