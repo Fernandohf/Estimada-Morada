@@ -5,7 +5,8 @@
 
 
 An End-to-End Machine Learning Project to predict housing prices in Natal-RN, Brazil.
-
+## Quickstart
+The notebook with the step-by-step and final result is available [here](https://nbviewer.jupyter.org/github/Fernandohf/Estimada-Morada/blob/master/end2end/End%20to%20End%20-%20Linear%20Regression%20Problem.ipynb) 
 ## Introduction
 
 - The DataSet used was collected using **Web Scraping** methods in public data.
