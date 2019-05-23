@@ -1,7 +1,7 @@
 
 # <img src="media/logo.png" width="20" href=https://github.com/Fernandohf/Estimada-Morada> Estimada Morada
 
-[![AUR](https://img.shields.io/aur/license/yaourt.svg)]()
+[![AUR](https://img.shields.io/github/license/Fernandohf/Estimada-Morada.svg)]()
 
 
 Regression model used to estimate prices of real estate in Natal-RN, Brazil.
