@@ -23,7 +23,7 @@ The following topics are covered in this Notebook:
 
 - Web Scrapping
 - Data Engineering
-- EDA
+- E.D.A.
 - Scikit-learn
   - Pipeline
   - Models
