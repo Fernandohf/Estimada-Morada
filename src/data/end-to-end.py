@@ -29,7 +29,7 @@ quantiles_99['price'] *= 1.15
 quantiles_99['suites'] *= 1.15
 # Outliers for each column
 data_out = data[(data['area'] > quantiles_99['area']) | (data['area'] > quantiles_99['area']) |
-                (data['bathrooms'] > quantiles_99['bathrooms']) | (data['bedrooms'] > quantiles_99['bedrooms']) | 
+                (data['bathrooms'] > quantiles_99['bathrooms']) | (data['bedrooms'] > quantiles_99['bedrooms']) |
                 (data['condo'] > quantiles_99['condo']) | (data['parking_spots'] > quantiles_99['parking_spots']) |
                 (data['price'] > quantiles_99['price']) | (data['suites'] > quantiles_99['suites'])
                 ]
@@ -59,8 +59,8 @@ data.describe()
 from sklearn.model_selection import train_test_split
 
 # Divided data
-train_set, test_set = train_test_split(data, 
-                                       test_size=0.2, 
+train_set, test_set = train_test_split(data,
+                                       test_size=0.2,
                                        random_state=35)
 
 print("data has {} instances\n {} train instances\n {} test instances".
@@ -71,7 +71,7 @@ train = train_set.copy()
 
 import folium
 
-# 
+#
 m = folium.Map(location=[-5.812757, -35.255127], zoom_start=6)
 
 locations = train[['lat', 'lon']].values.tolist()
