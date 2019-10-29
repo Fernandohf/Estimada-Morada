@@ -1,9 +1,9 @@
 
-# <img src="media/logo.png" width="20" href=https://github.com/Fernandohf/Estimada-Morada> Estimada Morada
+# <img src="docs/media/logo.png" width="20" href=https://github.com/Fernandohf/Estimada-Morada> Estimada Morada
 
 [![AUR](https://img.shields.io/github/license/Fernandohf/Estimada-Morada.svg)](https://github.com/Fernandohf/Estimada-Morada)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Fernandohf/Estimada-Morada/master)
-
+[![GitHub issues](https://img.shields.io/github/issues/Fernandohf/Estimada-Morada)](https://github.com/Fernandohf/Estimada-Morada/issues)
 
 Regression model used to estimate prices of real estate in Natal-RN, Brazil.
 
