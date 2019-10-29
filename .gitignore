@@ -1,4 +1,5 @@
 data/
-.vscode/
-.env
+*vscode/
+*.env
 notebooks/.ipynb_checkpoints/
+**__pycache__
