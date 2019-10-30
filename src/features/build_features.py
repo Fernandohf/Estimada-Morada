@@ -3,10 +3,15 @@
 import logging
 import os
 import time
+
 import pandas as pd
+
 from dotenv import find_dotenv, load_dotenv
-from .address_to_coordenates import apply_nomatin
+
 from ..data.utils import in_ipynb
+from .address_to_coordenates import apply_nomatin
+from .combine_features import combine_features
+
 if in_ipynb():
     from halo import HaloNotebook as Halo
 else:
@@ -39,8 +44,13 @@ def add_features(input_file, output_file, force):
     else:
         spinner.start("Loading transformed file...")
         time.sleep(2)
-        transformed_data = pd.read_csv(output_file)
+        transformed_data = pd.read_csv(
+            output_file.replace("processed", "interim"))
         spinner.stop_and_persist(text="Transformed file already exists!")
+
+    # Combine features
+    transformed_data = combine_features(transformed_data)
+    transformed_data = pd.read_csv(output_file)
 
     return transformed_data
 
