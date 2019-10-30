@@ -34,12 +34,15 @@ def add_features(input_file, output_file, force):
     if force or not os.path.exists(output_file):
         spinner.start("Adding Latitude and Longitude columns")
         transformed_data = apply_nomatin(clean_data)
-        transformed_data.to_csv("./data/processed/TRANSFORMED_DATA.csv", index=False)
+        transformed_data.to_csv(output_file, index=False)
         spinner.succeed("Latitude and Longitude features added!")
     else:
         spinner.start("Loading transformed file...")
         time.sleep(2)
+        transformed_data = pd.read_csv(output_file)
         spinner.stop_and_persist(text="Transformed file already exists!")
+
+    return transformed_data
 
 
 if __name__ == '__main__':
