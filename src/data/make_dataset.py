@@ -1,6 +1,7 @@
 """Processing steps of the dataset"""
 # -*- coding: utf-8 -*-
 import logging
+import os
 import pandas as pd
 from dotenv import find_dotenv, load_dotenv
 from .scrape_data import navigate
@@ -20,12 +21,21 @@ else:
 def process_dataset(input_file, output_file, scrape):
     """ Runs data processing scripts to turn raw data from (../raw) into
         cleaned data ready to be analyzed (saved in ../processed).
+
+        Parameters
+        ----------
+        input_file: str
+            Input file to be processed
+        output_file: str
+            Output processed file
+        scrape: bool
+            Force the scraping process
     """
     spinner = Halo(text='Making dataset...', spinner='dots')
     logger = logging.getLogger(__name__)
     logger.info('Making final dataset from raw data')
     # Scrape data
-    if scrape:
+    if scrape or not os.path.exists(input_file):
         spinner.start("Scraping data")
         with open('../references/urls.txt', 'r') as f:
             urls = f.read_lines()
@@ -37,16 +47,18 @@ def process_dataset(input_file, output_file, scrape):
         raw_data.to_csv(input_file, index=False)
         spinner.succeed("Data Scrapped!")
     else:
+        spinner.succeed("Loading scraped file...")
         raw_data = pd.read_csv(input_file)
+        spinner.succeed("Scraped file already exists!")
 
     # Remove duplicates
-    spinner.start("Removing duplicates and invalid values")
+    spinner.start("Removing duplicates and invalid values...")
     interim_data = remove_duplicates_and_na(raw_data)
     interim_data.to_csv("../data/interim/1_CLEAN_DATA.csv", index=False)
     spinner.succeed("Done removing duplicates!")
 
     # Remove outliers
-    spinner.start("Removing outliers and inconsistent values")
+    spinner.start("Removing outliers and inconsistent values...")
     final_data = remove_outliers(interim_data)
     final_data.to_csv(output_file, index=False)
     spinner.succeed("Done removing outliers!")
