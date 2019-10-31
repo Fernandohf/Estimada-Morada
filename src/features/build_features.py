@@ -34,8 +34,13 @@ def add_features(input_file, output_file, force):
             Force to process the input file
     """
     spinner = Halo(text='Building features...', spinner='dots')
-    # Add lat/lon columns
+
     clean_data = pd.read_csv(input_file)
+
+    # Combine features
+    transformed_data = combine_features(clean_data)
+
+    # Add lat/lon columns
     if force or not os.path.exists(output_file):
         spinner.start("Adding Latitude and Longitude columns")
         transformed_data = apply_nomatin(clean_data)
@@ -44,13 +49,9 @@ def add_features(input_file, output_file, force):
     else:
         spinner.start("Loading transformed file...")
         time.sleep(2)
-        transformed_data = pd.read_csv(
-            output_file.replace("processed", "interim"))
+        transformed_data = pd.read_csv(output_file)
         spinner.stop_and_persist(text="Transformed file already exists!")
-
-    # Combine features
-    transformed_data = combine_features(transformed_data)
-    transformed_data = pd.read_csv(output_file)
+    transformed_data.to_csv(output_file, index=False)
 
     return transformed_data
 
