@@ -7,7 +7,7 @@ import pandas as pd
 from dotenv import find_dotenv, load_dotenv
 from .scrape_data import navigate
 from .improve_and_clean import remove_duplicates_and_na, remove_outliers
-from .utils import in_ipynb
+from ..utils.utils import in_ipynb
 if in_ipynb():
     from halo import HaloNotebook as Halo
 else:

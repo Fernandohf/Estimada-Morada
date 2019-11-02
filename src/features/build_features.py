@@ -8,7 +8,7 @@ import pandas as pd
 
 from dotenv import find_dotenv, load_dotenv
 
-from ..data.utils import in_ipynb
+from ..utils.utils import in_ipynb
 from .address_to_coordenates import apply_nomatin
 from .combine_features import combine_features
 
@@ -37,9 +37,6 @@ def add_features(input_file, output_file, force):
 
     clean_data = pd.read_csv(input_file)
 
-    # Combine features
-    transformed_data = combine_features(clean_data)
-
     # Add lat/lon columns
     if force or not os.path.exists(output_file):
         spinner.start("Adding Latitude and Longitude columns")
@@ -53,6 +50,9 @@ def add_features(input_file, output_file, force):
         spinner.stop_and_persist(text="Transformed file already exists!")
     transformed_data.to_csv(output_file, index=False)
 
+    # Combine features
+    transformed_data = combine_features(transformed_data)
+
     return transformed_data
 
 
@@ -61,5 +61,6 @@ if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format=log_fmt)
 
     load_dotenv(find_dotenv())
-
-    add_features()
+    out_file = "../data/processed/TRANSFORMED_DATA.csv"
+    in_file = "../data/processed/TRANSFORMED_DATA.csv"
+    add_features(in_file, out_file, False)
