@@ -1,12 +1,14 @@
 """Add new features to the dataset"""
 # import click
-import logging
 import os
 import time
+
 import pandas as pd
-from dotenv import find_dotenv, load_dotenv
+
+from ..utils.utils import in_ipynb
 from .address_to_coordenates import apply_nomatin
-from ..data.utils import in_ipynb
+from .combine_features import combine_features
+
 if in_ipynb():
     from halo import HaloNotebook as Halo
 else:
@@ -29,8 +31,10 @@ def add_features(input_file, output_file, force):
             Force to process the input file
     """
     spinner = Halo(text='Building features...', spinner='dots')
-    # Add lat/lon columns
+
     clean_data = pd.read_csv(input_file)
+
+    # Add lat/lon columns
     if force or not os.path.exists(output_file):
         spinner.start("Adding Latitude and Longitude columns")
         transformed_data = apply_nomatin(clean_data)
@@ -42,13 +46,9 @@ def add_features(input_file, output_file, force):
         transformed_data = pd.read_csv(output_file)
         spinner.stop_and_persist(text="Transformed file already exists!")
 
+    # Combine features
+    transformed_data = combine_features(transformed_data)
+
+    transformed_data.to_csv(output_file, index=False)
+
     return transformed_data
-
-
-if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
-
-    load_dotenv(find_dotenv())
-
-    add_features()
