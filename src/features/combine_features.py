@@ -4,7 +4,8 @@
 def combine_features(dataframe):
     """
     """
+    df = dataframe.copy()
     # attribute combinations
-    dataframe["bedrooms_per_area"] = dataframe["bedrooms"] / dataframe["area"]
+    df["bedrooms_per_area"] = df["bedrooms"] / df["area"]
 
-    return dataframe
+    return df

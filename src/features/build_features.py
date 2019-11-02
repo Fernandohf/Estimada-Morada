@@ -1,12 +1,9 @@
 """Add new features to the dataset"""
 # import click
-import logging
 import os
 import time
 
 import pandas as pd
-
-from dotenv import find_dotenv, load_dotenv
 
 from ..utils.utils import in_ipynb
 from .address_to_coordenates import apply_nomatin
@@ -48,9 +45,10 @@ def add_features(input_file, output_file, force):
         time.sleep(2)
         transformed_data = pd.read_csv(output_file)
         spinner.stop_and_persist(text="Transformed file already exists!")
-    transformed_data.to_csv(output_file, index=False)
 
     # Combine features
     transformed_data = combine_features(transformed_data)
+
+    transformed_data.to_csv(output_file, index=False)
 
     return transformed_data
