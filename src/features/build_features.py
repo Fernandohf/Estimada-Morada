@@ -54,13 +54,3 @@ def add_features(input_file, output_file, force):
     transformed_data = combine_features(transformed_data)
 
     return transformed_data
-
-
-if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
-
-    load_dotenv(find_dotenv())
-    out_file = "../data/processed/TRANSFORMED_DATA.csv"
-    in_file = "../data/processed/TRANSFORMED_DATA.csv"
-    add_features(in_file, out_file, False)
